@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Mission to Mars</title>
   
-  <!-- CSS - Used Litera Bootswatch which overrides bootstrap and requires js and jQuery -->
+  <!-- CSS - Used Spacelab Bootswatch which overrides bootstrap and requires js and jQuery -->
     <!-- Spacelab Bootswatch -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/spacelab/bootstrap.min.css" integrity="sha384-F1AY0h4TrtJ8OCUQYOzhcFzUTxSOxuaaJ4BeagvyQL8N9mE4hrXjdDsNx249NpEc" crossorigin="anonymous">
 
@@ -18,21 +18,111 @@
 </head>
 
 <body>
-  <div class="container-fluid">
-    <div class="jumbotron text-center">
-      <h1>Mission to Mars</h1>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Mission to Mars</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
       
-      <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Get Data!</a></p>
+        <div class="collapse navbar-collapse" id="navbarColor02">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+  <div class="container-fluid">
+        
+        <!-- <h3>Featured Mars Image</h3>
+        <img src="{{ mars_one.featured_img }}" alt="Featured Image"> -->
+    <div class="card-columns mb-4 my-4">
+        <!-- <div class="col"> -->
+            <div class="card">    
+                <div class="card-body">
+                    <h3 class="card-title text-center text-success">Featured Mars Image</h3>
+                </div>
+                <img class="card-img-bottom" src="{{ mars_one.featured_img }}" alt="Featured Image">
+            </div>  
+        <!-- </div>  -->
+    <!-- <div class="col">
+        <div class="row mb-4"> -->
+            <div class="card">  
+                <div class="card-header text-center text-info"><h3>Latest News</h3></div>  
+                    <div class="card-body">
+                        <h3 class="card-title">{{ mars_one.latest_news.title }}</h3>
+                        <p class="card-text">{{ mars_one.latest_news.lead_in }}</p>
+                    </div>
+                </div>
+            </div> 
+        <!--</div> -->
+        <!-- <div class="row mb-4 mx-auto"> -->
+            <div class="card">  
+                <div class="card-header text-center text-info"><h3>Mars Facts</h3></div>  
+                    <div class="card-body">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr class="table-warning">
+                                    <th></th>
+                                    <th>Mars</th>
+                                    <th>Earth</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th>Diameter:</th>
+                                    <td>{{ mars_one.mars_facts.Mars.Diameter }}</td>
+                                    <td>{{ mars_one.mars_facts.Earth.Diameter }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Mass:</th>
+                                    <td>{{ mars_one.mars_facts.Mars.Mass }}</td>
+                                    <td>{{ mars_one.mars_facts.Earth.Mass }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Moons:</th>
+                                    <td>{{ mars_one.mars_facts.Mars.Moons }}</td>
+                                    <td>{{ mars_one.mars_facts.Earth.Moons }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Distance from Sun:</th>
+                                    <td>{{ mars_one.mars_facts.Mars.DistancefromSun }}</td>
+                                    <td>{{ mars_one.mars_facts.Earth.DistancefromSun }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Length of Year:</th>
+                                    <td>{{ mars_one.mars_facts.Mars.LengthofYear }}</td>
+                                    <td>{{ mars_one.mars_facts.Earth.LengthofYear }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Temperature:</th>
+                                    <td>{{ mars_one.mars_facts.Mars.Temperature }}</td>
+                                    <td>{{ mars_one.mars_facts.Earth.Temperature }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        <!-- </div> -->
     </div>
+        <div class="container-fluid">
+            <h3 class="text-center my-4">Hemispheres</h3>
+            <div class="card-deck">
+                {% for h in mars_one.hemispheres %}
+                <div class="card">
+                    <img class="card-img-top" src="{{ h.img_url }}" alt="{{ h.title }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ h.title }}</h5>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
     
-    <h2>Latest News</h2>
-    <h3>{{ mars_one.latest_news.title }}</h3>
-    <p>{{ mars_one.latest_news.lead_in }}</p>
-    <br>
-    <h3>Featured Mars Image</h3>
-    <img src="{{ mars_one.featured_img }}" alt="Featured Image">
-  </div>
-  </div>
+
+
 </body>
 
 </html>

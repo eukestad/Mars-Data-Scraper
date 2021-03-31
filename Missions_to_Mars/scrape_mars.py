@@ -78,6 +78,8 @@ def mars_facts():
 
     df.columns = ['','Mars','Earth']
     df = df.iloc[1:]
+    df = df.replace(':','',regex=True)
+    df[''] = df[''].replace(' ','', regex=True)
     df.set_index('', inplace=True)
 
     facts = df.to_dict()
